@@ -21,3 +21,12 @@ Manage Database
 psql -U _USERNAME_
 ```
 <small>CTRL + D to exit manager database</small><br>
+
+List All Databases
+```
+\l
+```
+Select/Access Database
+```
+\c _DATABASE_NAME_
+```
