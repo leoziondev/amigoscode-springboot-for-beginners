@@ -2,9 +2,7 @@ package com.amigoscode;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,22 @@ public class Main {
     @GetMapping
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
+    }
+
+    record newCustomerRequest(
+            String name,
+            String email,
+            Integer age
+    ) {
+
+    }
+
+    @PostMapping
+    public void addCustomer(@RequestBody newCustomerRequest request) {
+        Customer customer = new Customer();
+        customer.setName(request.name());
+        customer.setEmail(request.email());
+        customer.setAge(request.age());
+        customerRepository.save(customer);
     }
 }
